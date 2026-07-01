@@ -1,0 +1,29 @@
+[0:00 - HOOK]
+Planning a vacation usually means juggling dozens of tabs to find flights and hotels while worrying about keeping your personal information safe. That is why I built Travel Planner, a secure, multi-agent assistant that coordinates your entire itinerary in seconds while keeping your data private. (pause)
+
+[0:20 - WHAT IT IS]
+Travel Planner is an intelligent trip coordinator built on the Google Agent Development Kit 2.0 framework. It belongs to the Freestyle track, showing how a supervisor orchestrator can delegate complex tasks to specialized agents while validating safety rules. (pause)
+
+[0:40 - SHOW THE BANNER]
+(show assets/cover_page_banner.png)
+As you can see on the cover banner, this system is designed to be fully automated, secure, and intelligent, integrating flight booking, hotel selections, and real-time budget calculation under one hood. (pause)
+
+[1:00 - ARCHITECTURE]
+(show assets/architecture_diagram.png)
+Let us walk through the architecture. When a request is made, the flow starts at the Security Checkpoint node, which scrubs PII and checks for prompt injection. Once validated, the request proceeds to the Orchestrator Node. The orchestrator_agent acts as the supervisor, delegating tasks to our specialized sub-agents: the flight_agent and the hotel_agent. These sub-agents retrieve live recommendations via our local Model Context Protocol server. Finally, the plan goes to the Human Approval Node where the system pauses for user feedback before saving the confirmed itinerary. (pause)
+
+[2:00 - LIVE DEMO]
+(switch to playground at localhost:18081)
+Now, let us see it in action. I will input a request: I want to plan a 3-day trip to Paris starting on July 10, 2026. My budget is 1500 dollars, my phone is +1-555-0199, and my passport is AB1234567. 
+(pause)
+Notice that the system instantly identifies the passport and phone number and redacts them in the logs. The flight_agent and hotel_agent are called, launching the MCP tools to fetch flight SW-101 and the Grand Plaza Hotel. The orchestrator gets the Paris weather forecast and calculates the budget, showing a total of 1240 dollars. 
+(pause)
+Now the flow pauses, prompting me: "Do you approve this plan?". If I say "yes", it completes. If I request changes, like "change to a cheaper hotel", the system loops back to the orchestrator, updates the plan using the Cozy Corner B&B, and prompts me again.
+(pause)
+If we try a bad request, like a negative budget of minus 500 dollars, the Security Checkpoint immediately flags it, triggers a WARNING audit log, and routes the execution to ACCESS DENIED. (pause)
+
+[3:00 - SECURITY & MCP]
+The security checkpoint keeps user data safe by scrubbing phone and passport numbers and preventing prompt injections, writing strict JSON logs for audits. Meanwhile, the MCP tools run locally via stdio, allowing agents to search flights, find hotels, query forecasts, and sum budgets dynamically. (pause)
+
+[3:30 - IMPACT / CLOSE]
+Travel Planner benefits both travel agencies and individuals by making automated travel planning fast, reliable, and completely secure. It is a proof of concept showing how multiple AI agents can collaborate safely under human supervision. Thank you.

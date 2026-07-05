@@ -133,11 +133,7 @@ Once assets are generated, they will appear here:
 - **Workflow Architecture Diagram**: ![Architecture Diagram](assets/architecture_diagram.png)
 - **Project Cover Banner**: ![Cover Banner](assets/cover_page_banner.png)
 
----
 
-## Demo Script
-
-The narration script for this project can be found in [DEMO_SCRIPT.txt](DEMO_SCRIPT.txt).
 
 ---
 
